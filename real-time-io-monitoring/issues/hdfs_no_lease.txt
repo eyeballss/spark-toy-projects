@@ -1,0 +1,27 @@
+상황 : 
+hdfs 에 파일 a 가 있고 내용은 abc 이다.
+abc 에 이어서 def 를 붙이려고 hdfs dfs -appendToFile 명령어를 사용했는데
+다음과 같은 로그와 함께 exception 이 났다.
+
+에러 로그 :
+root@60fd6685329d:~# hdfs dfs -appendToFile ./logs /io_logs/logs
+2019-10-14 12:46:35,208 WARN hdfs.DataStreamer: DataStreamer Exception
+java.io.IOException: Failed to replace a bad datanode on the existing pipeline due to no more good datanodes being available to try. (Nodes: current=[DatanodeInfoWithStorage[55.55.55.4:9866,DS-dfc59e4e-b5a7-4b13-9f0a-2b71d692dc8c,DISK]], original=[DatanodeInfoWithStorage[55.55.55.4:9866,DS-dfc59e4e-b5a7-4b13-9f0a-2b71d692dc8c,DISK]]). The current failed datanode replacement policy is DEFAULT, and a client may configure this via 'dfs.client.block.write.replace-datanode-on-failure.policy' in its configuration.
+	at org.apache.hadoop.hdfs.DataStreamer.findNewDatanode(DataStreamer.java:1304)
+	at org.apache.hadoop.hdfs.DataStreamer.addDatanode2ExistingPipeline(DataStreamer.java:1372)
+	at org.apache.hadoop.hdfs.DataStreamer.handleDatanodeReplacement(DataStreamer.java:1598)
+	at org.apache.hadoop.hdfs.DataStreamer.setupPipelineInternal(DataStreamer.java:1499)
+	at org.apache.hadoop.hdfs.DataStreamer.setupPipelineForAppendOrRecovery(DataStreamer.java:1481)
+	at org.apache.hadoop.hdfs.DataStreamer.run(DataStreamer.java:720)
+appendToFile: Failed to replace a bad datanode on the existing pipeline due to no more good datanodes being available to try. (Nodes: current=[DatanodeInfoWithStorage[55.55.55.4:9866,DS-dfc59e4e-b5a7-4b13-9f0a-2b71d692dc8c,DISK]], original=[DatanodeInfoWithStorage[55.55.55.4:9866,DS-dfc59e4e-b5a7-4b13-9f0a-2b71d692dc8c,DISK]]). The current failed datanode replacement policy is DEFAULT, and a client may configure this via 'dfs.client.block.write.replace-datanode-on-failure.policy' in its configuration.
+
+원인 : 
+
+해결 방법 :
+
+
+참고 :
+https://community.cloudera.com/t5/Support-Questions/Failed-to-replace-a-bad-datanode-on-the-existing-pipeline/td-p/207711
+https://www.raviprak.com/research/hadoop/leaseManagement.html
+https://blog.cloudera.com/understanding-hdfs-recovery-processes-part-1/
+https://storageconference.us/2010/Papers/MSST/Shvachko.pdf
