@@ -8,8 +8,10 @@
 
 2.nc -lp 9999 로 9999번 TCP 포트를 연다.  
 
-3.아래 명령어로 spark shell 을 가동시킨다.
-spark-shell --master yarn  
+3.아래 명령어로 spark shell 을 가동시킨다.  
+
+
+    spark-shell --master yarn  
 
 4.shell 이 가동되면 아래 명령어를 통해 nc 으로부터 오는 문자들의 word count 를 해본다.  
 
