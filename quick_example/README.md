@@ -12,16 +12,21 @@ spark-shell --master yarn
 
 4. shell 이 가동되면 아래 명령어를 통해 nc 으로부터 오는 문자들의
 word count 를 해본다.
-spark.conf.set("spark.sql.shuffle.partitions", 5)
-val lines = spark.readStream.format("socket").option("host", "localhost").option("port", 9999).load()
-val words = lines.as[String].flatMap(_.split(" "))
-val wordCounts = words.groupBy("value").count()
-val query = wordCounts.writeStream.outputMode("complete").format("console").start().awaitTermination()  
+
+
+    spark.conf.set("spark.sql.shuffle.partitions", 5)
+    val lines = spark.readStream.format("socket").option("host", "localhost").option("port", 9999).load()
+    val words = lines.as[String].flatMap(_.split(" "))
+    val wordCounts = words.groupBy("value").count()
+    val query = wordCounts.writeStream.outputMode("complete").format("console").start().awaitTermination()  
   
 위의 코드에서는 output mode 가 complete 였다.
 다른 모드와 비교하며, 결과가 어떻게 나오는지 살펴보자.  
 
 < complete mode 결과 >
+
+![](/quick_example/complete%20mode.png){:height="50%" width="50%"}
+
 < update mode 결과 >
-< append mode 결과 >
- 
+
+![](/quick_example/update%20mode.png){:height="50%" width="50%"}
