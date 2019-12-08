@@ -1,7 +1,7 @@
 스파크 공식 홈페이지에 있는 quick example 을 따라하며 기본기를 다져본다.
 공식 홈페이지 quick example : https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#quick-example  
 
-1. 먼저 서버에 netcat 을 받는다.
+1. 먼저 서버에 netcat 을 받는다.  
 
 
     apt-get install netcat -y  
@@ -11,8 +11,7 @@
 3. 아래 명령어로 spark shell 을 가동시킨다.
 spark-shell --master yarn  
 
-4. shell 이 가동되면 아래 명령어를 통해 nc 으로부터 오는 문자들의
-word count 를 해본다.
+4. shell 이 가동되면 아래 명령어를 통해 nc 으로부터 오는 문자들의 word count 를 해본다.  
 
 
     spark.conf.set("spark.sql.shuffle.partitions", 5)
