@@ -27,5 +27,5 @@ linux terminal 에서 iostat 으로 나오는, 초당 read  값을 누계해본�
     val acc = sep.groupBy("_1").sum("_3").drop("_1")
     val query = acc.writeStream.outputMode("complete").format("console").start().awaitTermination()
  
-아래는 실시간으로 누계되는 모습이다.
+아래는 실시간으로 누계되는 모습이다.  
 ![](/real-time-io-monitoring/acc.png){:height="50%" width="50%"}
