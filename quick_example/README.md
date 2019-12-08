@@ -3,7 +3,8 @@
 
 1. 먼저 서버에 netcat 을 받는다.
 
-apt-get install netcat -y  
+
+    apt-get install netcat -y  
 
 2. nc -lp 9999 로 9999번 TCP 포트를 연다.  
 
