@@ -5,19 +5,17 @@ linux terminal 에서 iostat 으로 나오는, 초당 read  값을 누계해본�
 
     apt-get install sysstat -y  
 
-2.아래 명령어로 나온 iostat 의 결과를 file 로 저장한다.  
+2.아래 스크립트를 실행시키면, iostat 의 결과가 hdfs(/streaming/data/) 에 자동으로 쓰여진다.  
 
 
-    iostat 1 1 > temp
+    ./saveIostat.sh
 
-3.temp file을 hdfs(/streaming/data/) 에 넣는다.
-
-4.아래 명령어로 spark shell 을 가동시킨다.  
+3.아래 명령어로 spark shell 을 가동시킨다.  
  
 
     spark-shell --master yarn  
 
-5.shell 이 가동되면 아래 코드를 통해 초당 read 데이터를 누계해본다.  
+4.shell 이 가동되면 아래 코드를 통해 초당 read 데이터를 누계해본다.  
 
 
     spark.conf.set("spark.sql.shuffle.partitions", 5)
