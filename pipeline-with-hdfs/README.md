@@ -33,3 +33,8 @@ spark streaming 을 이용하여 데이터 파이프라인을 구축해본다.
     val wc = str.groupBy("value").count()
     val query = wc.writeStream.trigger(Trigger.ProcessingTime("10 seconds")).outputMode("complete").format("console").start().awaitTermination()
 
+아래는 netcat 을 통해 입력한 input 값이다.  
+![](/pipeline-with-hdfs/input.png){:height="50%" width="50%"}
+
+아래는 첫번째 spark streaming 을 거쳐 두 번째 spark streaming 에서 처리된 데이터의 결과값이다.  
+![](/pipeline-with-hdfs/result.png){:height="50%" width="50%"}
