@@ -1,1 +1,1 @@
-# spark-toy-projects
+# spark streaming toy projects
